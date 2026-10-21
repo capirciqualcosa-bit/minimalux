@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimalux UI</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm@5.3.0/css/xterm.css" />
+    <script src="https://cdn.jsdelivr.net/npm/xterm@5.3.0/lib/xterm.js"></script>
+</head>
+<body>
+
+    <!-- Desktop con icone vive -->
+    <main id="desktop">
+        <!-- Le 4 icone rimangono invariate -->
+        <div class="app-icon" id="app-trash" style="top: 30px; left: 30px;">
+            <svg class="icon-svg" viewBox="0 0 100 100">
+                <path fill="#4a5568" d="M30 30h40v55a5 5 0 0 1-5 5H35a5 5 0 0 1-5-5V30z"/>
+                <path fill="#718096" d="M25 20h50v8H25z"/>
+                <rect fill="#a0aec0" x="42" y="12" width="16" height="8" rx="2"/>
+                <line x1="42" y1="40" x2="42" y2="75" stroke="#2d3748" stroke-width="4" stroke-linecap="round"/>
+                <line x1="50" y1="40" x2="50" y2="75" stroke="#2d3748" stroke-width="4" stroke-linecap="round"/>
+                <line x1="58" y1="40" x2="58" y2="75" stroke="#2d3748" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+            <span class="icon-label">Cestino</span>
+        </div>
+
+        <div class="app-icon" id="app-system" style="top: 180px; left: 30px;">
+            <svg class="icon-svg" viewBox="0 0 100 100">
+                <rect fill="#2d3748" x="10" y="15" width="80" height="55" rx="8"/>
+                <rect fill="#0f172a" x="16" y="21" width="68" height="43" rx="4"/>
+                <path fill="#4a5568" d="M40 70h20v12H40z"/>
+                <rect fill="#718096" x="30" y="82" width="40" height="6" rx="2"/>
+                <text x="50" y="40" id="sys-cpu-text" fill="#38bdf8" font-size="14" font-weight="bold" text-anchor="middle">C:12%</text>
+                <text x="50" y="56" id="sys-ram-text" fill="#a855f7" font-size="14" font-weight="bold" text-anchor="middle">R:34%</text>
+            </svg>
+            <span class="icon-label">Sistema</span>
+        </div>
+
+        <div class="app-icon" id="app-clock" style="top: 330px; left: 30px;">
+            <svg class="icon-svg" viewBox="0 0 100 100">
+                <circle cx="25" cy="22" r="12" fill="#ef4444"/>
+                <circle cx="75" cy="22" r="12" fill="#ef4444"/>
+                <circle cx="50" cy="55" r="38" fill="#f87171"/>
+                <circle cx="50" cy="55" r="30" fill="#ffffff"/>
+                <rect x="25" y="85" width="8" height="10" rx="3" fill="#dc2626" transform="rotate(20 25 85)"/>
+                <rect x="67" y="85" width="8" height="10" rx="3" fill="#dc2626" transform="rotate(-20 67 85)"/>
+                <line id="hand-hour" x1="50" y1="55" x2="50" y2="38" stroke="#1e293b" stroke-width="4" stroke-linecap="round"/>
+                <line id="hand-minute" x1="50" y1="55" x2="50" y2="30" stroke="#ef4444" stroke-width="3" stroke-linecap="round"/>
+                <circle cx="50" cy="55" r="3" fill="#1e293b"/>
+            </svg>
+            <span class="icon-label" id="clock-digital">00:00</span>
+        </div>
+
+        <div class="app-icon" id="app-files" style="top: 480px; left: 30px;">
+            <svg class="icon-svg" viewBox="0 0 100 100">
+                <path fill="#f59e0b" d="M10 25a6 6 0 0 1 6-6h24l8 10h36a6 6 0 0 1 6 6v45a6 6 0 0 1-6 6H16a6 6 0 0 1-6-6V25z"/>
+                <path fill="#fbbf24" d="M10 35a6 6 0 0 1 6-6h68a6 6 0 0 1 6 6v40a6 6 0 0 1-6 6H16a6 6 0 0 1-6-6V35z"/>
+                <rect x="22" y="48" width="56" height="18" rx="6" fill="rgba(15, 23, 42, 0.75)"/>
+                <text x="50" y="62" id="disk-text" fill="#fef08a" font-size="11" font-weight="bold" text-anchor="middle">DISK 18%</text>
+            </svg>
+            <span class="icon-label">File Manager</span>
+        </div>
+    </main>
+
+    <!-- MENU RADIALE -->
+    <div id="radial-menu" class="radial-hidden">
+        <div class="radial-center"><span>MINIMALUX</span></div>
+        <div class="radial-item" data-action="terminal" style="--angle: 0deg;"><span class="radial-icon">💻</span><span class="radial-label">Terminale</span></div>
+        <div class="radial-item" data-action="homeassistant" style="--angle: 72deg;"><span class="radial-icon">🏠</span><span class="radial-label">Home Assistant</span></div>
+        <div class="radial-item" data-action="store" style="--angle: 144deg;"><span class="radial-icon">🛍️</span><span class="radial-label">App Store</span></div>
+        <div class="radial-item" data-action="settings" style="--angle: 216deg;"><span class="radial-icon">⚙️</span><span class="radial-label">Impostazioni</span></div>
+        <div class="radial-item" data-action="power" style="--angle: 288deg;"><span class="radial-icon">⚡</span><span class="radial-label">Spegni</span></div>
+    </div>
+
+    <!-- Contenitore dinamico dove il Window Manager creerà le finestre -->
+    <div id="window-layer"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>

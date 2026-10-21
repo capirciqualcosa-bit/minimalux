@@ -1,0 +1,256 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+}
+
+body {
+    background-color: #0b0d10;
+    color: #e0e6ed;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+#desktop {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* Icone Cicciotte (128x128px) e Trascinabili */
+.app-icon {
+    position: absolute;
+    width: 128px;
+    height: 128px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: grab;
+    padding: 8px;
+    border-radius: 20px;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.app-icon:hover {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(8px);
+}
+
+.app-icon:active {
+    cursor: grabbing;
+    transform: scale(0.95);
+}
+
+.icon-svg {
+    width: 88px;
+    height: 88px;
+    filter: drop-shadow(0px 8px 12px rgba(0,0,0,0.4));
+}
+
+.icon-label {
+    margin-top: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: #f1f5f9;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+
+/* Terminale Overlay */
+#terminal-overlay {
+    position: fixed;
+    top: 5vh;
+    left: 5vw;
+    width: 90vw;
+    height: 90vh;
+    background: rgba(10, 12, 16, 0.94);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+    backdrop-filter: blur(20px);
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+#terminal-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.96);
+}
+
+.terminal-header {
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+#terminal-container { flex: 1; padding: 10px; }
+
+/* --- MENU RADIALE --- */
+#radial-menu {
+    position: fixed;
+    width: 280px;
+    height: 280px;
+    margin-left: -140px; /* Centra sul punto x,y del cursore */
+    margin-top: -140px;
+    z-index: 90;
+    pointer-events: auto;
+    transition: opacity 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#radial-menu.radial-hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.5);
+}
+
+/* Bottone Centrale */
+.radial-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 76px;
+    height: 76px;
+    margin-top: -38px;
+    margin-left: -38px;
+    background: rgba(15, 23, 42, 0.92);
+    border: 2px solid rgba(56, 189, 248, 0.5);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #38bdf8;
+    box-shadow: 0 0 25px rgba(56, 189, 248, 0.2);
+    backdrop-filter: blur(12px);
+    z-index: 2;
+}
+
+/* Elementi attorno alla circonferenza (raggio = 100px) */
+.radial-item {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60px;
+    height: 60px;
+    margin-top: -30px;
+    margin-left: -30px;
+    background: rgba(30, 41, 59, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    
+    /* Posizionamento matematico lungo la circonferenza tramite l'angolo */
+    transform: rotate(var(--angle)) translate(100px) rotate(calc(-1 * var(--angle)));
+}
+
+.radial-item:hover {
+    background: rgba(56, 189, 248, 0.25);
+    border-color: #38bdf8;
+    transform: rotate(var(--angle)) translate(112px) rotate(calc(-1 * var(--angle))) scale(1.15);
+}
+
+.radial-icon { font-size: 1.3rem; }
+
+.radial-label {
+    position: absolute;
+    bottom: -18px;
+    white-space: nowrap;
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: #e2e8f0;
+    background: rgba(15, 23, 42, 0.8);
+    padding: 2px 6px;
+    border-radius: 4px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+}
+
+.radial-item:hover .radial-label {
+    opacity: 1;
+}
+
+/* --- FINestre FLUTTUANTI (WINDOW MANAGER) --- */
+.window-frame {
+    position: fixed;
+    background: rgba(10, 12, 16, 0.94);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.85);
+    backdrop-filter: blur(20px);
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    overflow: hidden; /* Necessario per il resize pulito */
+    resize: both;     /* Rende la finestra scalabile dai bordi */
+    min-width: 300px;
+    min-height: 200px;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.window-frame.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.96);
+    resize: none;
+}
+
+.window-header {
+    padding: 12px 18px;
+    background: rgba(255, 255, 255, 0.05);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #94a3b8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: grab;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    user-select: none;
+}
+
+.window-header:active {
+    cursor: grabbing;
+}
+
+/* --- LED DI STATO --- */
+.window-led {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #22c55e; /* Default: Verde (OK) */
+    box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Stati del LED */
+.window-led.green { background-color: #22c55e; box-shadow: 0 0 8px rgba(34, 197, 94, 0.6); }
+.window-led.orange { background-color: #f59e0b; box-shadow: 0 0 8px rgba(245, 158, 11, 0.6); }
+.window-led.red { background-color: #ef4444; box-shadow: 0 0 8px rgba(239, 68, 68, 0.6); }
+.window-led.blue { background-color: #38bdf8; box-shadow: 0 0 8px rgba(56, 189, 248, 0.6); }
+
+.window-body {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    padding: 8px;
+}

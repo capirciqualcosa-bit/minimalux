@@ -1,0 +1,27 @@
+# OS / System junk
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs and databases
+*.log
+*.sqlite
+
+# Python / Node temporary files
+__pycache__/
+*.py[cod]
+*$py.class
+node_modules/
+
+# Minimalux build / temp outputs
+/os/build/
+/os/tmp/
+*.tmp
