@@ -12,7 +12,8 @@
 ## Verification Checksum (SHA256)
 
 ```text
-67fdfe003989ee4354ba33cca6cb10412be4f49611746c8d35a29f82fc4c0490  Armbian_community_26.11.0-trunk.104_Rk3566-box-demo_trixie_current_6.18.57_minimal.img.xz```
+67fdfe003989ee4354ba33cca6cb10412be4f49611746c8d35a29f82fc4c0490  Armbian_community_26.11.0-trunk.104_Rk3566-box-demo_trixie_current_6.18.57_minimal.img.xz
+```
 
 ## Build & Modification Methodology
 To ensure absolute transparency and build reproducibility, the Minimalux OS raw image file (.img) is never stored directly inside the Git repository.
