@@ -4,33 +4,34 @@
 
 ---
 
-## 🎯 Filosofia del Progetto
+## 🎯 Project Philosophy
 
-**Minimalux** nasce da una premessa semplice: la tecnologia moderna è ingiustificatamente pesante. I sistemi operativi odierni sprecano gigabyte di RAM e cicli di CPU per interfacce grafiche ridondanti e servizi in background invisibili ma avidi di risorse.
+**Minimalux** stems from a simple premise: modern technology is unjustifiably heavy. Today's operating systems waste gigabytes of RAM and CPU cycles on redundant graphical interfaces and invisible yet resource-hungry background services.
 
-Minimalux ribalta questo paradigma. Progettato specificamente per trasformare economiche TV box basate su SoC **RK3566** (circa 60€ di hardware) in workstation SOHO d'emergenza e server domestici efficienti 24/7, Minimalux offre un'esperienza utente "stile elettrodomestico" ma con la flessibilità di un sistema Linux completo.
+Minimalux flips this paradigm. Specifically designed to transform inexpensive TV boxes powered by **RK3566** SoCs (roughly €60 of hardware) into emergency SOHO workstations and efficient 24/7 home servers, Minimalux delivers an "appliance-style" user experience with the flexibility of a full Linux system.
 
-### 🚀 I Pilastri di Minimalux:
-* **Efficienza Estrema:** un'impronta di memoria stimata sotto i 300 MB per l'intero sistema operativo (OS + Interfaccia grafica), lasciando oltre il 93% della RAM libera per i container e le applicazioni.
-* **Interfaccia Zero-Bloat:** niente Electron o framework pesanti. Un frontend interamente basato su Vanilla HTML/CSS/JS guidato dal motore grafico ultraleggero **WPE WebKit** su Wayland.
-* **UX a Prova di Zen:** niente fronzoli tradizionali o finestre piene di pulsanti inutili. Finestre riscalabili gestite interamente da scorciatoie da tastiera/telecomando e indicatori a LED di stato hardware.
-* **Utilità Pratica:** supporto nativo per la stampa, connettività Bluetooth e architettura modulare per integrarsi con server locali come Home Assistant.
+### 🚀 The Pillars of Minimalux:
+* **Extreme Efficiency:** An estimated memory footprint under 300 MB for the entire operating system (OS + Graphical Interface), leaving over 93% of RAM free for containers and applications.
+* **Zero-Bloat Interface:** No Electron or heavy frameworks. A frontend built entirely on Vanilla HTML/CSS/JS powered by the ultra-lightweight **WPE WebKit** engine on Wayland.
+* **Zen-Inspired UX:** No traditional clutter or windows filled with useless buttons. Resizable windows managed entirely via keyboard/remote control shortcuts and hardware status LED indicators.
+* **Practical Utility:** Native support for printing, Bluetooth connectivity, and modular architecture to integrate with local servers like Home Assistant.
 
 ---
 
-## 🛠️ Stack Tecnologico
-* **Base OS:** Armbian Minimal (Linux Kernel ottimizzato)
+## 🛠️ Technology Stack
+* **Base OS:** Armbian Minimal (Optimized Linux Kernel)
 * **Graphics & Compositor:** Wayland + WPE WebKit (Kiosk mode)
-* **UI/UX:** HTML5, CSS3, Vanilla JavaScript, SVG dinamici
-* **Backend Bridge:** Python per la comunicazione con il kernel, le metriche di sistema in tempo reale e tutto il resto
+* **UI/UX:** HTML5, CSS3, Vanilla JavaScript, Dynamic SVGs
+* **Backend Bridge:** Python for kernel communication, real-time system metrics, and everything else
 
 ---
 
-## 📂 Struttura del Repository
-* `/ui` - Interfaccia grafica minimalista (HTML/CSS/JS)
-* `/os` - Personalizzazioni Armbian, script di sistema e maintask
-* `/docs` - Guide, schemi e documentazione del progetto
+## 📂 Repository Structure
+* `/ui` - Minimalist graphical interface (HTML/CSS/JS)
+* `/os` - Armbian customizations, system scripts, and main tasks
+* `/dtb` - Custom Device Tree sources (`.dts`) and compiled binaries (`.dtb`) for hardware compatibility
+* `/docs` - Guides, schemios, and project documentation
 
 ---
 
-*Segui lo sviluppo del progetto sul canale YouTube [Capirci Qualcosa](https://www.youtube.com/@CapirciQualcosa) e sul [gruppo Telegram ufficiale](https://t.me/GruppoCapirciQualcosa)!*
+*Follow the project's development on the YouTube channel [Capirci Qualcosa](https://www.youtube.com/@CapirciQualcosa) and the [official Telegram group](https://t.me/GruppoCapirciQualcosa)!*
